@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #c8b8da;
+  color: rgb(80, 80, 80);
+  line-height: 1.5;
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+.search-form {
+  width: 100%;
+  height: 100%;
+  /* background-color: #90b7b4; */
+  padding: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 2px 5px 15px 1px rgba(68, 17, 56, 0.2);
+  margin-bottom: 20px;
+}
+
+.search-form input {
+  background-color: #6d47ae;
+  color: rgb(253, 253, 253);
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 7px;
+}
+.search-form ::placeholder {
+  color: rgb(253, 253, 253);
+}
+
+.search-form button {
+  border: none;
+  color: rgb(253, 253, 253);
+  background-color: #6d47ae;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 7;
+  cursor: pointer;
+  transition: color 300ms ease, background-color 300ms ease;
+}
+
+.search-form button:hover,
+.search-form button:focus {
+  color: #c8b8da;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.info {
+  display: flex;
+  justify-content: space-evenly;
+}
+.info-item {
+  color: rgb(75, 2, 60);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-card {
+  box-shadow: 2px 5px 15px 1px rgba(80, 34, 77, 0.2);
+}
+
+.load-more {
+  display: block;
+  border: none;
+  color: rgb(253, 253, 253);
+  background-color: #6d47ae;
+  font-size: 26px;
+  border-radius: 5px;
+  padding: 7;
+  cursor: pointer;
+  transition: color 300ms ease, background-color 300ms ease;
+  margin: 20 auto;
+}
+
+.load-more button:hover,
+.load-more button:focus {
+  color: #c8b8da;
+}
