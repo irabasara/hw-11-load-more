@@ -1,4 +1,4 @@
-export default refs = {
+export const refs = {
   buttonLoadMore: document.querySelector('.load-more'),
   searchForm: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),

@@ -1,6 +1,6 @@
 import Image from './pixabayAPI';
 import createMarkup from './markup';
-import refs from './refs';
+import { refs } from './refs';
 import onLoad from './observer';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
