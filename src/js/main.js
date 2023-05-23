@@ -10,12 +10,12 @@ const image = new Image();
 const lightbox = new SimpleLightbox('.gallery a');
 
 refs.searchForm.addEventListener('submit', onSearchFormSubmit);
-// buttonLoadMore.addEventListener('click', onLoadMoreClick);
+refs.buttonLoadMore.addEventListener('click', onLoadMoreClick);
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
   image.query = event.currentTarget.elements.searchQuery.value;
-
+  observer.unobserve(refs.target);
   image.resetPage();
   image
     .fetchImages()
@@ -35,36 +35,28 @@ function onSearchFormSubmit(event) {
   clearMarkup();
 }
 
-// function onLoadMoreClick() {
-//   image
-//     .fetchImages()
-//     .then(({ hits, totalHits }) => {
-//       if (image.perPage >= totalHits) {
-//         return Report.info(
-//           'INFO',
-//           "We're sorry, but you've reached the end of search results."
-//         );
-//       }
+function onLoadMoreClick() {
+  image
+    .fetchImages()
+    .then(({ hits, totalHits }) => {
+      if (image.perPage >= totalHits) {
+        return Report.info(
+          'INFO',
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
 
-//       gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
+      refs.gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
+      lightbox.refresh();
 
-//       image.incrementHits(hits);
-//     })
-//     .catch(error => console.log(error));
-// }
+      image.incrementHits(hits);
+    })
+    .catch(error => console.log(error));
+}
 
 function clearMarkup() {
   refs.gallery.innerHTML = '';
 }
-
-// function btnNothidden() {
-//   buttonLoadMore.style.visibility = 'visible';
-// }
-
-// function btnIshidden() {
-//   buttonLoadMore.style.visibility = 'hidden';
-// }
-// btnIshidden();
 
 let options = {
   root: null,
@@ -73,6 +65,3 @@ let options = {
 };
 
 let observer = new IntersectionObserver(onLoad, options);
-// document.addEventListener('scroll', onScroll);
-
-// function onScroll() {}
