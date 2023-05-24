@@ -1,7 +1,7 @@
 import Image from './pixabayAPI';
 import createMarkup from './markup';
 import { refs } from './refs';
-// import onLoad from './observer';
+import onLoad from './observer';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Report } from 'notiflix';
@@ -14,10 +14,9 @@ refs.buttonLoadMore.addEventListener('click', onLoadMoreClick);
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
-  console.log('submit');
   image.query = event.currentTarget.elements.searchQuery.value;
   image.resetPage();
-  // observer.unobserve(refs.target);
+  observer.unobserve(refs.target);
 
   image
     .fetchImages()
@@ -36,7 +35,7 @@ function onSearchFormSubmit(event) {
 
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
 
-      // observer.observe(refs.target);
+      observer.observe(refs.target);
       lightbox.refresh();
     })
     .catch(error => console.log(error));
@@ -45,8 +44,6 @@ function onSearchFormSubmit(event) {
 }
 
 function onLoadMoreClick() {
-  console.log('load more');
-
   image
     .fetchImages()
     .then(({ hits, totalHits }) => {
@@ -69,10 +66,10 @@ function clearMarkup() {
   refs.gallery.innerHTML = '';
 }
 
-// let options = {
-//   root: null,
-//   rootMargin: '300px',
-//   threshold: 1.0,
-// };
+let options = {
+  root: null,
+  rootMargin: '300px',
+  threshold: 1.0,
+};
 
-// let observer = new IntersectionObserver(onLoad, options);
+let observer = new IntersectionObserver(onLoad, options);
