@@ -16,15 +16,15 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
 
   image.query = event.currentTarget.elements.searchQuery.value;
-  observer.unobserve(refs.target);
   image.resetPage();
+  observer.unobserve(refs.target);
 
   image
     .fetchImages()
-    .then(({ hits }) => {
+    .then(({ hits, totalHits }) => {
       if (image.query !== '') {
         event.target.reset();
-      } else if (hits.length === 0 || image.query === '') {
+      } else if (totalHits === 0 || image.query === '') {
         refs.buttonLoadMore.hidden = true;
         refs.buttonLoadMore.classList.remove('load');
         Report.info(
