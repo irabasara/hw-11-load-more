@@ -17,8 +17,6 @@ function onSearchFormSubmit(event) {
 
   image.query = event.currentTarget.elements.searchQuery.value;
   observer.unobserve(refs.target);
-
-  console.log();
   image.resetPage();
 
   image
@@ -27,6 +25,8 @@ function onSearchFormSubmit(event) {
       if (image.query !== '') {
         event.target.reset();
       } else if (hits.length === 0 || image.query === '') {
+        refs.buttonLoadMore.hidden = true;
+        refs.buttonLoadMore.classList.remove('load');
         Report.info(
           'INFO',
           'Sorry, there are no images matching your search query. Please try again.'
@@ -48,7 +48,7 @@ function onLoadMoreClick() {
   image
     .fetchImages()
     .then(({ hits, totalHits }) => {
-      if (image.perPage >= totalHits) {
+      if (image.perPage >= totalHits || image.perPage >= 480) {
         return Report.info(
           'INFO',
           "We're sorry, but you've reached the end of search results."

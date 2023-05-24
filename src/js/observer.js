@@ -12,10 +12,7 @@ export default function onLoad(entries, observer) {
         .then(({ hits, totalHits }) => {
           if (image.perPage >= totalHits || image.perPage >= 480) {
             observer.unobserve(refs.target);
-            return Report.info(
-              'INFO',
-              "We're sorry, but you've reached the end of search results."
-            );
+            return;
           }
           btnNothidden();
 
