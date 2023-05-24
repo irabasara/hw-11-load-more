@@ -41,6 +41,9 @@ export default class Image {
   // incrementPage() {
   //   this.page += 1;
   // }
+  resetQuery() {
+    this.searchQuery = '';
+  }
 
   resetPage() {
     this.page = 1;

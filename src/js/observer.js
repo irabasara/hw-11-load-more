@@ -24,7 +24,7 @@ export default function onLoad(entries, observer) {
         .catch(error => console.log(error));
     } else {
       refs.buttonLoadMore.hidden = true;
-      elem.classList.remove('load');
+      refs.buttonLoadMore.classList.remove('load');
     }
   });
 }

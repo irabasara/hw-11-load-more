@@ -14,24 +14,33 @@ refs.buttonLoadMore.addEventListener('click', onLoadMoreClick);
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
+
   image.query = event.currentTarget.elements.searchQuery.value;
   observer.unobserve(refs.target);
+
+  console.log();
   image.resetPage();
+
   image
     .fetchImages()
     .then(({ hits }) => {
-      if (hits.length === 0 || image.query === '') {
-        return Report.info(
+      if (image.query !== '') {
+        event.target.reset();
+      } else if (hits.length === 0 || image.query === '') {
+        Report.info(
           'INFO',
           'Sorry, there are no images matching your search query. Please try again.'
         );
+        return;
       }
 
       refs.gallery.insertAdjacentHTML('beforeend', createMarkup(hits));
+
       observer.observe(refs.target);
       lightbox.refresh();
     })
     .catch(error => console.log(error));
+
   clearMarkup();
 }
 
